@@ -8,9 +8,11 @@
  * @format
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View } from 'react-native';
-import { Colors, DebugInstructions, Header, LearnMoreLinks, ReloadInstructions } from 'react-native/Libraries/NewAppScreen';
+import { Colors, DebugInstructions, LearnMoreLinks } from 'react-native/Libraries/NewAppScreen';
+import { InputField } from './src/components/common/InputField';
+import { Header } from './src/components/header/Header';
 
 const Section: React.FC<{
   title: string;
@@ -41,6 +43,8 @@ const Section: React.FC<{
 };
 
 const App = () => {
+  const [theme, setTheme] = useState('Light');
+
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -56,12 +60,7 @@ const App = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title='Step One'>
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this screen and then come back to see your edits.
-          </Section>
-          <Section title='See Your Changes'>
-            <ReloadInstructions />
-          </Section>
+          <InputField onTextChanged={value => console.log(`---${value}`)} />
           <Section title='Debug'>
             <DebugInstructions />
           </Section>

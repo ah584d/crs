@@ -1,0 +1,1 @@
+export const myFecth = () => undefined;
