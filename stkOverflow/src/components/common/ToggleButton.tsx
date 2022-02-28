@@ -24,10 +24,8 @@ export const ToggleButton = ({ toggleSwitch, isEnabled }: ToggleButtonProps): Re
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: 10,
   },
   label: {
     fontSize: 8,

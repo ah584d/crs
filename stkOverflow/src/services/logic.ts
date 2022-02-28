@@ -1,6 +1,7 @@
 import { apiRoutes } from '../config/apiRoutes';
 import { fetchData } from './network';
 
+// avraham fix type
 export const getUserInfo = async (uid: string, params?: Record<string, string>): Promise<any | null> => {
   uid = '1264804';
   const url = buildUrl(uid, params);

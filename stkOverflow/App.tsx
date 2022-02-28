@@ -1,73 +1,30 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
+import React, { createContext, useEffect, useState } from 'react';
+import { AppState, SafeAreaView, StyleSheet } from 'react-native';
+import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import { StkOverflowStackScreen } from './src/components/navigation/navigationStack';
+import { RootScreen } from './src/components/root/Root';
 
-import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View } from 'react-native';
-import { Colors, DebugInstructions, LearnMoreLinks } from 'react-native/Libraries/NewAppScreen';
-import { InputField } from './src/components/common/InputField';
-import { Header } from './src/components/header/Header';
-
-const Section: React.FC<{
-  title: string;
-}> = ({ children, title }) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+export const ThemeContext = createContext({ theme: 'light', setTheme: ((_: string) => {}) as React.Dispatch<React.SetStateAction<string>> });
 
 const App = () => {
-  const [theme, setTheme] = useState('Light');
+  const [theme, setTheme] = useState('light');
+  const themeData = { theme, setTheme };
 
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', () => {});
+    return () => {
+      subscription.remove();
+    };
+  }, []);
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView contentInsetAdjustmentBehavior='automatic' style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <InputField onTextChanged={value => console.log(`---${value}`)} />
-          <Section title='Debug'>
-            <DebugInstructions />
-          </Section>
-          <Section title='Learn More'>Read the docs to discover what to do next:</Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
+    <SafeAreaView>
+      <ThemeContext.Provider value={themeData}>
+        <RootScreen />
+        {/* <NavigationContainer theme={theme === 'light' ? DefaultTheme : DarkTheme}>
+          <StkOverflowStackScreen />
+        </NavigationContainer> */}
+      </ThemeContext.Provider>
     </SafeAreaView>
   );
 };
