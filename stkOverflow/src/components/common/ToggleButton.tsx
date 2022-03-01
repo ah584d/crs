@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { View, Switch, StyleSheet, Text } from 'react-native';
-import { StkColors } from '../../config/StkColors';
+import { StkColors } from '../../config/stkColors';
 
 export interface ToggleButtonProps {
   toggleSwitch: () => void;
@@ -11,11 +11,11 @@ export const ToggleButton = ({ toggleSwitch, isEnabled }: ToggleButtonProps): Re
     <View style={styles.container}>
       <Switch
         style={styles.switch}
-        trackColor={{ false: '#767577', true: '#81b0ff' }}
-        thumbColor={isEnabled ? StkColors.lightgray : StkColors.white}
+        trackColor={{ false: StkColors().lightgrey, true: StkColors().lightskyblue }}
+        thumbColor={isEnabled ? StkColors().lightgray : StkColors().white}
         onValueChange={toggleSwitch}
         value={isEnabled}
-        ios_backgroundColor={StkColors.aliceblue}
+        ios_backgroundColor={StkColors().aliceblue}
       />
       <Text style={styles.container}>{isEnabled ? 'light mode' : 'dark mode'}</Text>
     </View>

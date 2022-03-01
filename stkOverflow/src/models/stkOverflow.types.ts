@@ -1,1 +1,4 @@
-export interface TT {}
+export enum Theme {
+  DARK = 'dark',
+  LIGHT = 'light',
+}

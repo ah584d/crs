@@ -5,10 +5,10 @@ export interface UserSummaryProps {
   avatar: string;
   name: string;
   reputation: string;
-  score: number;
+  acceptRate: number;
 }
 
-export const UserSummary = ({ name, reputation, score, avatar }: UserSummaryProps): ReactElement => {
+export const UserSummary = ({ name, reputation, acceptRate, avatar }: UserSummaryProps): ReactElement => {
   return (
     <View style={styles.container}>
       <View style={styles.userCard}>
@@ -16,7 +16,7 @@ export const UserSummary = ({ name, reputation, score, avatar }: UserSummaryProp
         <View style={styles.userDetails}>
           <Text style={styles.text}>{name}</Text>
           <Text style={styles.text}>{reputation}</Text>
-          <Text style={styles.text}>{score}</Text>
+          <Text style={styles.text}>{acceptRate}</Text>
         </View>
       </View>
       <View style={styles.filter}>

@@ -1,19 +1,19 @@
-import { useTheme } from '@react-navigation/native';
 import React, { ReactElement, useState } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { ThemeContext } from '../../../App';
+import { Theme } from '../../models/stkOverflow.types';
 import { ToggleButton } from '../common/ToggleButton';
 
 export const Header = (): ReactElement => {
   const [isEnabled, setIsEnabled] = useState(true);
+  const { setTheme, theme } = React.useContext(ThemeContext);
+
   const toggleSwitch = () => {
     setIsEnabled(previousState => !previousState);
-    setTheme(theme === 'Light' ? 'Dark' : 'Light');
+    setTheme(theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
   };
-  const { setTheme, theme } = React.useContext(ThemeContext);
-  const { colors } = useTheme();
 
-  console.log(` actual theme: ${theme} - ${colors}`);
+  console.log(` actual theme: ${theme}`);
 
   return (
     <>

@@ -3,7 +3,7 @@ import { fetchData } from './network';
 
 // avraham fix type
 export const getUserInfo = async (uid: string, params?: Record<string, string>): Promise<any | null> => {
-  uid = '1264804';
+  // uid = '1264804';
   const url = buildUrl(uid, params);
   const [result, error] = await fetchData(url);
   if (error) {

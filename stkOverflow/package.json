@@ -17,7 +17,10 @@
     "@react-navigation/stack": "^5.9.3",
     "lodash": "^4.17.21",
     "react": "17.0.2",
-    "react-native": "0.66.4"
+    "react-native": "0.66.4",
+    "react-native-gesture-handler": "^2.2.0",
+    "react-native-modalize-webview": "^1.0.0",
+    "react-native-webview": "^11.17.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

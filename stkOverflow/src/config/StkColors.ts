@@ -1,4 +1,8 @@
-export const StkColors = {
+import React from 'react';
+import { ThemeContext } from '../../App';
+import { Theme } from '../models/stkOverflow.types';
+
+const light = {
   aliceblue: '#f0f8ff',
   antiquewhite: '#faebd7',
   aqua: '#00ffff',
@@ -144,4 +148,21 @@ export const StkColors = {
   whitesmoke: '#f5f5f5',
   yellow: '#ffff00',
   yellowgreen: '#9acd32',
+};
+
+const dark = {
+  ...light,
+  // I only implemented two colors for dark mode
+  black: '#ffffff',
+  white: '#000000',
+};
+
+export const StkColors = () => {
+  const isDarkMode = React.useContext(ThemeContext)?.theme === Theme.DARK;
+
+  if (isDarkMode) {
+    return dark;
+  } else {
+    return light;
+  }
 };
