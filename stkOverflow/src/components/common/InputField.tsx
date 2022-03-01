@@ -1,6 +1,7 @@
 import React, { ReactElement, useState } from 'react';
 import { View, StyleSheet, TextInput, Text, TouchableOpacity, Image } from 'react-native';
 import { StkColors } from '../../config/stkColors';
+import en from '../../assets/locales/en.json';
 
 export interface InputFieldProps {
   onTextChanged: (value: string) => void;
@@ -20,7 +21,7 @@ export const InputField = ({ onTextChanged, editable }: InputFieldProps): ReactE
             setText(updatedValue);
             onTextChanged(updatedValue);
           }}
-          placeholder={'type user id'}
+          placeholder={en.labels.defaultHint}
           keyboardType={'default'}
           value={text}
         />
@@ -35,7 +36,7 @@ export const InputField = ({ onTextChanged, editable }: InputFieldProps): ReactE
       </View>
       {!editable ? (
         <View style={styles.statusWrapper}>
-          <Text style={[styles.status, { color: StkColors().crimson }]}>{'loading....'}</Text>
+          <Text style={[styles.status, { color: StkColors().crimson }]}>{en.labels.loading}</Text>
         </View>
       ) : null}
     </View>

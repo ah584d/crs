@@ -1,11 +1,12 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { AppState, SafeAreaView } from 'react-native';
 import { RootScreen } from './src/components/root/Root';
+import { Theme } from './src/models/stkOverflow.types';
 
-export const ThemeContext = createContext({ theme: 'light', setTheme: ((_: string) => {}) as React.Dispatch<React.SetStateAction<string>> });
+export const ThemeContext = createContext({ theme: Theme.LIGHT, setTheme: ((_: string) => {}) as React.Dispatch<React.SetStateAction<Theme>> });
 
 const App = () => {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(Theme.LIGHT);
   const themeData = { theme, setTheme };
 
   useEffect(() => {

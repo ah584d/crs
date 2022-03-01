@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import en from '../../assets/locales/en.json';
 
 export interface CloseButtonProps {
   onClose: () => void;
@@ -8,7 +9,7 @@ export interface CloseButtonProps {
 export const CloseButton = ({ onClose }: CloseButtonProps): ReactElement => {
   return (
     <TouchableOpacity style={styles.container} onPress={onClose}>
-      <Text style={styles.text}>{'close'}</Text>
+      <Text style={styles.text}>{en.labels.close}</Text>
     </TouchableOpacity>
   );
 };
