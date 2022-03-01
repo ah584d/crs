@@ -1,7 +1,15 @@
 {
   "labels": {
+    "headerTitle": "Get Stack Overflow posts",
     "close": "Close",
-	"defaultHint": "type user id'",
-	"loading": "loading..."
+    "defaultHint": "type user id'",
+    "loading": "loading...",
+    "lightMode": "light mode",
+    "darkMode": "dark mode",
+    "date": "Date",
+    "answers": "Answers",
+    "views": "Views",
+	"footer_1": "Total of",
+	"footer_2": "questions found"
   }
 }

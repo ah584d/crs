@@ -9,13 +9,16 @@ export interface InputFieldProps {
 }
 
 export const InputField = ({ onTextChanged, editable }: InputFieldProps): ReactElement => {
-  const [text, setText] = useState(''); // avrahm to improve
+  const [text, setText] = useState(''); // avraham to improve
+
+  // We must define this color here because of the condition below (!editable) which leads to hook warning.
+  const editFieldBackGroundColor = StkColors().crimson;
 
   return (
     <View style={styles.container}>
       <View style={[styles.inputWrapper, { borderBottomColor: StkColors().lightgray }]}>
         <TextInput
-          style={[styles.input, { backgroundColor: editable ? StkColors().white : StkColors().lightsteelblue }]}
+          style={[styles.input, { backgroundColor: editable ? StkColors().white : StkColors().lightsteelblue, color: StkColors().black }]}
           editable={editable}
           onChangeText={(updatedValue: string) => {
             setText(updatedValue);
@@ -36,7 +39,7 @@ export const InputField = ({ onTextChanged, editable }: InputFieldProps): ReactE
       </View>
       {!editable ? (
         <View style={styles.statusWrapper}>
-          <Text style={[styles.status, { color: StkColors().crimson }]}>{en.labels.loading}</Text>
+          <Text style={[styles.status, { color: editFieldBackGroundColor }]}>{en.labels.loading}</Text>
         </View>
       ) : null}
     </View>

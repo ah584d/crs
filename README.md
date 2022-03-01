@@ -22,4 +22,3 @@ List of features to implement:
    UT
    types
    filters
-   dark mode

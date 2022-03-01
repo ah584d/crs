@@ -1,8 +1,9 @@
-import React, { ReactElement, useCallback, useRef, useState } from 'react';
-import { StyleSheet, FlatList, View } from 'react-native';
-import { ModalizeWebView } from 'react-native-modalize-webview';
-import Modalize from 'react-native-modalize';
+import React, { ReactElement, useRef, useState } from 'react';
+import { StyleSheet, FlatList, View, SafeAreaView, Modal } from 'react-native';
+import WebView from 'react-native-webview';
 import { StkColors } from '../../config/stkColors';
+import { CloseButton } from '../common/CloseButton';
+import { Spinner } from '../common/Spinner';
 import { PostItem } from '../postItem/PostItem';
 
 export interface PostsListProps {
@@ -11,18 +12,12 @@ export interface PostsListProps {
 
 export const PostsList = ({ posts }: PostsListProps): ReactElement => {
   const [currentUrl, setCurrentUrl] = useState<string>();
-
-  const modalizeRef = useRef<Modalize>(null);
-
-  const handleOpen = useCallback(() => {
-    if (modalizeRef.current) {
-      modalizeRef.current?.open();
-    }
-  }, []);
+  const [visible, setVisible] = useState(false);
+  const webViewRef = useRef<WebView>(null);
 
   const openModal = (url: string) => {
     setCurrentUrl(url);
-    handleOpen();
+    setVisible(true);
   };
 
   return (
@@ -33,27 +28,26 @@ export const PostsList = ({ posts }: PostsListProps): ReactElement => {
         keyExtractor={(item, index) => `${item?.accepted_answer_id}-${index}`}
         ItemSeparatorComponent={() => <View style={[styles.separator, { borderBottomColor: StkColors().lightgray }]} />}
       />
-      <ModalizeWebView
-        modalStyle={{ flex: 1 }}
-        ref={modalizeRef}
-        handlePosition={'inside'}
-        webViewProps={{
-          source: {
-            uri: currentUrl ?? 'https://goggle.com',
-          },
-        }}
-      />
+      <Modal visible={visible}>
+        <SafeAreaView style={styles.modalContent}>
+          <View style={styles.closeWrapper}>
+            <CloseButton onClose={() => setVisible(false)} />
+          </View>
+          <WebView startInLoadingState={true} ref={webViewRef} source={{ uri: currentUrl ?? 'https://google.com' }} renderLoading={() => <Spinner />} />
+        </SafeAreaView>
+      </Modal>
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+  modalContent: {
+    flex: 1,
   },
   separator: {
     borderBottomWidth: 1,
+  },
+  closeWrapper: {
+    padding: 12,
   },
 });

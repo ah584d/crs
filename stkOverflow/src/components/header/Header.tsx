@@ -3,6 +3,8 @@ import { View, StyleSheet, Text } from 'react-native';
 import { ThemeContext } from '../../../App';
 import { Theme } from '../../models/stkOverflow.types';
 import { ToggleButton } from '../common/ToggleButton';
+import en from '../../assets/locales/en.json';
+import { StkColors } from '../../config/stkColors';
 
 export const Header = (): ReactElement => {
   const [isEnabled, setIsEnabled] = useState(true);
@@ -13,8 +15,6 @@ export const Header = (): ReactElement => {
     setTheme(theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
   };
 
-  console.log(` actual theme: ${theme}`);
-
   return (
     <>
       <View style={styles.container}>
@@ -23,7 +23,7 @@ export const Header = (): ReactElement => {
         </View>
       </View>
       <View style={styles.titleWrapper}>
-        <Text style={styles.title}>{'Get Stack Overflow posts'}</Text>
+        <Text style={[styles.title, { color: StkColors().black }]}>{en.labels.headerTitle}</Text>
       </View>
     </>
   );

@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { View, Switch, StyleSheet, Text } from 'react-native';
 import { StkColors } from '../../config/stkColors';
+import en from '../../assets/locales/en.json';
 
 export interface ToggleButtonProps {
   toggleSwitch: () => void;
@@ -17,7 +18,7 @@ export const ToggleButton = ({ toggleSwitch, isEnabled }: ToggleButtonProps): Re
         value={isEnabled}
         ios_backgroundColor={StkColors().aliceblue}
       />
-      <Text style={styles.container}>{isEnabled ? 'light mode' : 'dark mode'}</Text>
+      <Text style={[styles.container, { color: StkColors().black }]}>{isEnabled ? en.labels.lightMode : en.labels.darkMode}</Text>
     </View>
   );
 };

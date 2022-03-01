@@ -1,5 +1,7 @@
 import React, { ReactElement } from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
+import { StkColors } from '../../config/stkColors';
+import en from '../../assets/locales/en.json';
 
 export interface UserSummaryProps {
   avatar: string;
@@ -12,24 +14,24 @@ export const UserSummary = ({ name, reputation, acceptRate, avatar }: UserSummar
   return (
     <View style={styles.container}>
       <View style={styles.userCard}>
-        <Image style={styles.avatar} source={{ uri: avatar }} />
+        <Image style={[styles.avatar, { borderColor: StkColors().black }]} source={{ uri: avatar }} />
         <View style={styles.userDetails}>
-          <Text style={styles.text}>{name}</Text>
-          <Text style={styles.text}>{reputation}</Text>
-          <Text style={styles.text}>{acceptRate}</Text>
+          <Text style={[styles.text, { color: StkColors().black }]}>{name}</Text>
+          <Text style={[styles.text, { color: StkColors().black }]}>{reputation}</Text>
+          <Text style={[styles.text, { color: StkColors().black }]}>{acceptRate}</Text>
         </View>
       </View>
       <View style={styles.filter}>
-        <Text style={styles.text}>{'Questions: '}</Text>
+        <Text style={[styles.text, { color: StkColors().black }]}>{'Questions: '}</Text>
         <View style={styles.filtersButtons}>
           <TouchableOpacity style={styles.filterButton}>
-            <Text style={styles.text}>{'Date'}</Text>
+            <Text style={[styles.text, { color: StkColors().black }]}>{en.labels.date}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.filterButton}>
-            <Text style={styles.text}>{'Answers'}</Text>
+            <Text style={[styles.text, { color: StkColors().black }]}>{en.labels.answers}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.filterButton}>
-            <Text style={styles.text}>{'Views'}</Text>
+            <Text style={[styles.text, { color: StkColors().black }]}>{en.labels.views}</Text>
           </TouchableOpacity>
         </View>
       </View>

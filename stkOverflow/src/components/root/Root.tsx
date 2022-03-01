@@ -30,7 +30,6 @@ export const RootScreen = (): ReactElement => {
       setPosts([]);
       return;
     }
-    console.log(`try to fetch data for user : ${inputFiledValue}`);
     setLoading(true);
     const userInfos = await getUserInfo(inputFiledValue);
     setPosts(userInfos?.items);
@@ -86,12 +85,12 @@ const styles = StyleSheet.create({
     borderColor: 'blue',
     paddingVertical: 32,
     paddingHorizontal: 32,
-    flex: 0.1,
+    flex: 0.13,
   },
   listWrapper: {
     borderWidth: 1,
     borderColor: 'orange',
-    flex: 0.85,
+    flex: 0.87,
   },
   footerWrapper: {
     paddingBottom: 32,
