@@ -6,12 +6,15 @@
     "loading": "loading...",
     "lightMode": "light mode",
     "darkMode": "dark mode",
+    "questions": "Questions: ",
     "date": "Date",
     "answers": "Answers",
     "views": "Views",
     "footer_1": "Total of",
     "footer_2": "questions found",
     "score": "Score",
-    "noUser": "no user found for this id"
+    "noUser": "no user found for this id",
+    "reputation": "Reputation - ",
+    "acceptRate": "Accept Rate -"
   }
 }

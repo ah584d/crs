@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react';
-import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, Image } from 'react-native';
 import { StkColors } from '../../config/stkColors';
 import en from '../../assets/locales/en.json';
+import { Filters } from './FiIters';
 
 export interface UserSummaryProps {
   avatar: string;
@@ -17,24 +18,11 @@ export const UserSummary = ({ name, reputation, acceptRate, avatar }: UserSummar
         <Image style={[styles.avatar, { borderColor: StkColors().black }]} source={{ uri: avatar }} />
         <View style={styles.userDetails}>
           <Text style={[styles.text, { color: StkColors().black }]}>{name}</Text>
-          <Text style={[styles.text, { color: StkColors().black }]}>Reputation - {reputation}</Text>
-          {acceptRate && <Text style={[styles.text, { color: StkColors().black }]}>Accept Rate - {acceptRate}</Text>}
+          <Text style={[styles.text, { color: StkColors().black }]}>{`${en.labels.reputation}${reputation}`}</Text>
+          {acceptRate && <Text style={[styles.text, { color: StkColors().black }]}>{`${en.labels.acceptRate}${acceptRate}`}</Text>}
         </View>
       </View>
-      <View style={styles.filter}>
-        <Text style={[styles.text, { color: StkColors().black }]}>{'Questions: '}</Text>
-        <View style={styles.filtersButtons}>
-          <TouchableOpacity style={styles.filterButton}>
-            <Text style={[styles.text, { color: StkColors().black }]}>{en.labels.date}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.filterButton}>
-            <Text style={[styles.text, { color: StkColors().black }]}>{en.labels.answers}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.filterButton}>
-            <Text style={[styles.text, { color: StkColors().black }]}>{en.labels.views}</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      <Filters />
     </View>
   );
 };
@@ -67,19 +55,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     justifyContent: 'space-between',
     paddingLeft: 16,
-  },
-  filter: {
-    borderWidth: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  filtersButtons: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  filterButton: {
-    alignContent: 'center',
-    paddingHorizontal: 5,
-    borderWidth: 1,
   },
 });
