@@ -1,4 +1,4 @@
-<img src="readmePictures/react.png" align="right" width="50" height="50" style="background-color:white;"/>
+<img src="readmePictures/react.png" align="right" width="70" height="70" style="background-color:white;"/>
 
 ## CRS - stackoverflow feed app
 > A simple React-Native application to fetch stackoverflow user infos
@@ -31,10 +31,10 @@
 In order to test: type user id 1234567 (and change typing speed to test debouncing)
 
 ## Screenshots
-![main screen](https://github.com/ah584d/crs/blob/master/readmePictures/screen1.jpg)
-![search user](https://github.com/ah584d/crs/blob/master/readmePictures/screen2.jpg)
-![dark mode](https://github.com/ah584d/crs/blob/master/readmePictures/screen3.jpg)
-![display post](https://github.com/ah584d/crs/blob/master/readmePictures/screen4.jpg)
+<img src="readmePictures/screen1.jpg" align="right" width="150" height="300" style="background-color:white;"/>
+<img src="readmePictures/screen2.jpg" align="right" width="150" height="300" style="background-color:white;"/>
+<img src="readmePictures/screen3.jpg" align="right" width="150" height="300" style="background-color:white;"/>
+<img src="readmePictures/screen4.jpg" align="right" width="150" height="300" style="background-color:white;"/>
 
 
 ## Backlog
