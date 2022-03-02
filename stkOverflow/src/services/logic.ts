@@ -17,7 +17,4 @@ export const getUserInfo = async (uid: string, params?: Record<string, string>):
 
 export const buildUrl = (uid: string, params?: Record<string, string>): string => `${apiRoutes.STK_OVERFLOW.PROFILE}/${uid}/questions?order=desc&sort=activity&site=stackoverflow`;
 
-export const getHtmlContent = (htmlEncocedContent: string): string => {
-  console.log(decode(htmlEncocedContent));
-  return decode(htmlEncocedContent);
-};
+export const getHtmlContent = (htmlEncocedContent: string): string => decode(htmlEncocedContent);

@@ -30,6 +30,10 @@ List of features to implement:
 3. add state management
 5. accessibility
 6. e2e tests
+
    UT
    types
    filters
+
+
+In order to test: type user id 1234567 (and change typing speed to test debouncing)

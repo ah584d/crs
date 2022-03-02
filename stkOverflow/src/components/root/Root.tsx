@@ -14,6 +14,7 @@ import en from '../../assets/locales/en.json';
 export const RootScreen = (): ReactElement => {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState<Record<string, unknown>[]>();
+  const [searchedId, setSearchedId] = useState<string>();
 
   // Stop the invocation of the debounced function after component unmounting
   useEffect(() => {
@@ -24,9 +25,12 @@ export const RootScreen = (): ReactElement => {
 
   const isListAvailable = posts && posts.length > 0;
 
+  const displayNoResult = (): boolean => !loading && !!(searchedId && searchedId.length > 0);
+
   const { owner: { display_name, reputation, profile_image, accept_rate } = {} as any } = posts?.[0] ?? {}; // avraham fix type
 
   const fetchUserData = async (inputFiledValue: string): Promise<void> => {
+    setSearchedId(inputFiledValue);
     if (!inputFiledValue || inputFiledValue.length === 0) {
       setPosts([]);
       return;
@@ -55,9 +59,9 @@ export const RootScreen = (): ReactElement => {
         <View style={styles.listWrapper}>
           {isListAvailable ? (
             <UserSummary name={display_name} reputation={reputation} acceptRate={accept_rate} avatar={profile_image} />
-          ) : (
+          ) : displayNoResult() ? (
             <Text style={[styles.noUserText, { color: StkColors().black }]}>{en.labels.noUser}</Text>
-          )}
+          ) : null}
           <PostsList posts={posts} />
         </View>
       </View>

@@ -9,33 +9,36 @@ export interface InputFieldProps {
 }
 
 export const InputField = ({ onTextChanged, editable }: InputFieldProps): ReactElement => {
-  const [text, setText] = useState(''); // avraham to improve
+  const [searchedId, setSearchedId] = useState(''); // avraham to improve
 
   // We must define this color here because of the condition below (!editable) which leads to hook warning.
   const editFieldBackGroundColor = StkColors().crimson;
+  const imageBackgrndColor = StkColors().white;
 
   return (
     <View style={styles.container}>
       <View style={[styles.inputWrapper, { borderBottomColor: StkColors().lightgray }]}>
         <TextInput
-          style={[styles.input, { backgroundColor: editable ? StkColors().white : StkColors().lightsteelblue, color: StkColors().black }]}
+          style={[styles.input, { backgroundColor: editable ? StkColors().white : StkColors().lightgray, color: StkColors().black }]}
           editable={editable}
           onChangeText={(updatedValue: string) => {
-            setText(updatedValue);
+            setSearchedId(updatedValue);
             onTextChanged(updatedValue);
           }}
           placeholder={en.labels.defaultHint}
           keyboardType={'default'}
-          value={text}
+          value={searchedId}
         />
-        <TouchableOpacity
-          style={styles.resetButtonParent}
-          onPress={() => {
-            setText('');
-            onTextChanged('');
-          }}>
-          <Image style={[styles.resetButton, { backgroundColor: StkColors().white }]} source={require('../../assets/png/close.png')} />
-        </TouchableOpacity>
+        {searchedId ? (
+          <TouchableOpacity
+            style={styles.resetButtonParent}
+            onPress={() => {
+              setSearchedId('');
+              onTextChanged('');
+            }}>
+            <Image style={[styles.resetButton, { backgroundColor: imageBackgrndColor }]} source={require('../../assets/png/close.png')} />
+          </TouchableOpacity>
+        ) : null}
       </View>
       {!editable ? (
         <View style={styles.statusWrapper}>
