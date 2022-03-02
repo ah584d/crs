@@ -12,7 +12,7 @@ export interface FilterProps {
 export const Filter = ({ selected, label, onPressed, filterIndex }: FilterProps): ReactElement => {
   return (
     <TouchableOpacity onPress={() => onPressed(filterIndex)} style={[styles.filterButton, { backgroundColor: selected ? StkColors().dodgerblue : StkColors().white }]}>
-      <Text style={[styles.text, { color: StkColors().black }]}>{label}</Text>
+      <Text style={[styles.text, { color: selected ? StkColors().azure : StkColors().black }]}>{label}</Text>
     </TouchableOpacity>
   );
 };
