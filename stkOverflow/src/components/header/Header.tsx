@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import { ThemeContext } from '../../../App';
+import { GlobalStateContext } from '../../../App';
 import { Theme } from '../../models/stkOverflow.types';
 import { ToggleButton } from '../common/ToggleButton';
 import en from '../../assets/locales/en.json';
@@ -8,7 +8,7 @@ import { StkColors } from '../../config/stkColors';
 
 export const Header = (): ReactElement => {
   const [isEnabled, setIsEnabled] = useState(true);
-  const { setTheme, theme } = React.useContext(ThemeContext);
+  const { setTheme, theme } = React.useContext(GlobalStateContext);
 
   const toggleSwitch = () => {
     setIsEnabled(previousState => !previousState);
@@ -34,8 +34,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    // borderWidth: 1,
-    // borderColor: 'green',
   },
   toggleWrapper: {
     marginBottom: 16,

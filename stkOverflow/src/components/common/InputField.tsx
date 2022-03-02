@@ -9,11 +9,11 @@ export interface InputFieldProps {
 }
 
 export const InputField = ({ onTextChanged, editable }: InputFieldProps): ReactElement => {
-  const [searchedId, setSearchedId] = useState(''); // avraham to improve
+  const [searchedId, setSearchedId] = useState('');
 
   // We must define this color here because of the condition below (!editable) which leads to hook warning.
-  const editFieldBackGroundColor = StkColors().crimson;
-  const imageBackgrndColor = StkColors().white;
+  const crimsonColor4HookOrder = StkColors().crimson;
+  const whiteColor4HookOrder = StkColors().white;
 
   return (
     <View style={styles.container}>
@@ -36,13 +36,13 @@ export const InputField = ({ onTextChanged, editable }: InputFieldProps): ReactE
               setSearchedId('');
               onTextChanged('');
             }}>
-            <Image style={[styles.resetButton, { backgroundColor: imageBackgrndColor }]} source={require('../../assets/png/close.png')} />
+            <Image style={[styles.resetButton, { backgroundColor: whiteColor4HookOrder }]} source={require('../../assets/png/close.png')} />
           </TouchableOpacity>
         ) : null}
       </View>
       {!editable ? (
         <View style={styles.statusWrapper}>
-          <Text style={[styles.status, { color: editFieldBackGroundColor }]}>{en.labels.loading}</Text>
+          <Text style={[styles.status, { color: crimsonColor4HookOrder }]}>{en.labels.loading}</Text>
         </View>
       ) : null}
     </View>

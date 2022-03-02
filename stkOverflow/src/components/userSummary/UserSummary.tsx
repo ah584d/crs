@@ -12,6 +12,8 @@ export interface UserSummaryProps {
 }
 
 export const UserSummary = ({ name, reputation, acceptRate, avatar }: UserSummaryProps): ReactElement => {
+  const blackColor4HookOrder = StkColors().black;
+
   return (
     <View style={styles.container}>
       <View style={styles.userCard}>
@@ -19,7 +21,7 @@ export const UserSummary = ({ name, reputation, acceptRate, avatar }: UserSummar
         <View style={styles.userDetails}>
           <Text style={[styles.text, { color: StkColors().black }]}>{name}</Text>
           <Text style={[styles.text, { color: StkColors().black }]}>{`${en.labels.reputation}${reputation}`}</Text>
-          {acceptRate && <Text style={[styles.text, { color: StkColors().black }]}>{`${en.labels.acceptRate}${acceptRate}`}</Text>}
+          {acceptRate && <Text style={[styles.text, { color: blackColor4HookOrder }]}>{`${en.labels.acceptRate}${acceptRate}`}</Text>}
         </View>
       </View>
       <Filters />
@@ -34,7 +36,6 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
   },
   userCard: {
-    borderWidth: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -52,7 +53,6 @@ const styles = StyleSheet.create({
   },
   userDetails: {
     flex: 0.6,
-    borderWidth: 1,
     justifyContent: 'space-between',
     paddingLeft: 16,
   },

@@ -1,4 +1,6 @@
-export const fetchData = async (url: string): Promise<[Record<string, any> | null, unknown | null]> => {
+import { NetworkResponse } from '../models/stkOverflow.types';
+
+export const fetchData = async (url: string): Promise<NetworkResponse> => {
   console.log(`url: ${url}`);
   try {
     const result = await fetch(url, {

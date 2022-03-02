@@ -1,6 +1,7 @@
 import React, { ReactElement, useRef, useState } from 'react';
 import { StyleSheet, FlatList, View, SafeAreaView, Modal } from 'react-native';
 import WebView from 'react-native-webview';
+import { MAX_RESULT_IN_LIST } from '../../config/const';
 import { StkColors } from '../../config/stkColors';
 import { CloseButton } from '../common/CloseButton';
 import { Spinner } from '../common/Spinner';
@@ -24,11 +25,11 @@ export const PostsList = ({ posts }: PostsListProps): ReactElement => {
   return (
     <>
       <FlatList
-        data={posts?.slice(0, 15)}
+        data={posts?.slice(0, MAX_RESULT_IN_LIST)}
         renderItem={(post: Record<string, any>) => <PostItem title={post?.item?.title} score={post?.item?.score} url={post?.item?.link} openModal={openModal} />}
-        keyExtractor={(item, index) => `${item?.accepted_answer_id}-${index}`}
+        keyExtractor={(item, index) => `${item?.last_activity_date}-${index}`}
         ItemSeparatorComponent={separator}
-        ListFooterComponent={separator}
+        ListFooterComponent={posts && posts.length > 0 ? separator : null}
       />
       <Modal visible={visible}>
         <SafeAreaView style={[styles.modalContent, { backgroundColor: StkColors().white }]}>

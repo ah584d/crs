@@ -1,47 +1,58 @@
-import React, { ReactElement, useState } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import React, { ReactElement } from 'react';
+import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import { StkColors } from '../../config/stkColors';
 import en from '../../assets/locales/en.json';
-
-export interface FiltersProps {}
+import { FILTERS_BUTTON_LABELS } from '../../config/const';
+import { Filter } from './Filter';
+import { GlobalStateContext } from '../../../App';
+import { getUserInfo } from '../../services/logic';
 
 export const Filters = (): ReactElement => {
-  const [searchFilters, setSearchFilters] = useState<boolean[]>([false, false, false]);
+  const { setFilters, filters, userId, setPosts } = React.useContext(GlobalStateContext);
+
+  const onFilterActived = (buttonIndex: number): void => {
+    const updatedSearchFilters = [...filters];
+    updatedSearchFilters.splice(buttonIndex, 1, !filters[buttonIndex]);
+    setFilters(updatedSearchFilters);
+  };
+
+  const refreshUserData = async (): Promise<void> => {
+    const userInfos = await getUserInfo(userId, filters);
+    setPosts(userInfos?.items);
+  };
+
   return (
-    <View style={styles.filter}>
+    <View style={styles.container}>
       <Text style={[styles.text, { color: StkColors().black }]}>{en.labels.questions}</Text>
       <View style={styles.filtersButtons}>
-        <TouchableOpacity style={styles.filterButton}>
-          <Text style={[styles.text, { color: StkColors().black }]}>{en.labels.date}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.filterButton}>
-          <Text style={[styles.text, { color: StkColors().black }]}>{en.labels.answers}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.filterButton}>
-          <Text style={[styles.text, { color: StkColors().black }]}>{en.labels.views}</Text>
-        </TouchableOpacity>
+        {FILTERS_BUTTON_LABELS.map((buttonlabel, index) => (
+          <Filter key={index} label={buttonlabel} selected={filters[index]} onPressed={onFilterActived} filterIndex={index} />
+        ))}
       </View>
+      <TouchableOpacity onPress={async () => refreshUserData()}>
+        <Image style={[styles.refreshButton, { backgroundColor: StkColors().white }]} source={require('../../assets/png/refresh.png')} />
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  filter: {
-    borderWidth: 1,
+  container: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
   filtersButtons: {
+    flex: 0.7,
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  filterButton: {
-    alignContent: 'center',
-    paddingHorizontal: 5,
-    borderWidth: 1,
+    justifyContent: 'space-between',
   },
   text: {
     fontWeight: 'bold',
-    paddingBottom: 8,
+  },
+  refreshButton: {
+    height: 20,
+    width: 20,
   },
 });

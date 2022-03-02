@@ -10,11 +10,12 @@ import { Header } from '../header/Header';
 import { PostsList } from '../postsList/PostsList';
 import { UserSummary } from '../userSummary/UserSummary';
 import en from '../../assets/locales/en.json';
+import { GlobalStateContext } from '../../../App';
 
 export const RootScreen = (): ReactElement => {
   const [loading, setLoading] = useState(false);
-  const [posts, setPosts] = useState<Record<string, unknown>[]>();
-  const [searchedId, setSearchedId] = useState<string>();
+  const { filters, userId, setUserId, posts, setPosts } = React.useContext(GlobalStateContext);
+  const { owner: { display_name, reputation, profile_image, accept_rate } = {} as any } = posts?.[0] ?? {};
 
   // Stop the invocation of the debounced function after component unmounting
   useEffect(() => {
@@ -23,20 +24,17 @@ export const RootScreen = (): ReactElement => {
     };
   }, []);
 
-  const isListAvailable = posts && posts.length > 0;
+  const blackColor4HookOrder = StkColors().black;
 
-  const displayNoResult = (): boolean => !loading && !!(searchedId && searchedId.length > 0);
-
-  const { owner: { display_name, reputation, profile_image, accept_rate } = {} as any } = posts?.[0] ?? {}; // avraham fix type
-
-  const fetchUserData = async (inputFiledValue: string): Promise<void> => {
-    setSearchedId(inputFiledValue);
-    if (!inputFiledValue || inputFiledValue.length === 0) {
+  const fetchUserData = async (inputFieldValue: string): Promise<void> => {
+    setUserId(inputFieldValue);
+    if (!inputFieldValue || inputFieldValue.length === 0) {
       setPosts([]);
       return;
     }
+
     setLoading(true);
-    const userInfos = await getUserInfo(inputFiledValue);
+    const userInfos = await getUserInfo(inputFieldValue, filters);
     setPosts(userInfos?.items);
     setLoading(false);
   };
@@ -45,14 +43,14 @@ export const RootScreen = (): ReactElement => {
   // we improve twice performance here:
   // 1. no new ref to debouncedChangeHandler on each render
   // 2. no new exceution of debounce on each render
-  const debouncedChangeHandler = useMemo(() => debounce(fetchUserData, DEBOUNCE_DELAY), []);
+  const debouncedChangeHandler = useMemo(() => debounce(fetchUserData, DEBOUNCE_DELAY), [filters]);
+  const isListAvailable = posts && posts.length > 0;
+  const displayNoResult = (): boolean => !loading && !!(userId?.length > 0);
 
   return (
     <View style={[styles.container, { backgroundColor: StkColors().white }]}>
       <View style={styles.top}>
-        <View style={styles.headerWrapper}>
-          <Header />
-        </View>
+        <Header />
         <View style={styles.inputWrapper}>
           <InputField onTextChanged={debouncedChangeHandler} editable={!loading} />
         </View>
@@ -60,7 +58,7 @@ export const RootScreen = (): ReactElement => {
           {isListAvailable ? (
             <UserSummary name={display_name} reputation={reputation} acceptRate={accept_rate} avatar={profile_image} />
           ) : displayNoResult() ? (
-            <Text style={[styles.noUserText, { color: StkColors().black }]}>{en.labels.noUser}</Text>
+            <Text style={[styles.noUserText, { color: blackColor4HookOrder }]}>{en.labels.noUser}</Text>
           ) : null}
           <PostsList posts={posts} />
         </View>
@@ -84,20 +82,12 @@ const styles = StyleSheet.create({
   top: {
     flex: 1,
   },
-  headerWrapper: {
-    borderWidth: 1,
-    borderColor: 'red',
-  },
   inputWrapper: {
-    borderWidth: 1,
-    borderColor: 'blue',
     paddingVertical: 32,
     paddingHorizontal: 32,
     flex: 0.13,
   },
   listWrapper: {
-    borderWidth: 1,
-    borderColor: 'orange',
     flex: 0.87,
   },
   footerWrapper: {

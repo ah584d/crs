@@ -1,11 +1,10 @@
 import { decode } from 'html-entities';
 import { apiRoutes } from '../config/apiRoutes';
+import { FILTERS_BUTTON_QUERY_PARAM } from '../config/const';
 import { fetchData } from './network';
 
-// avraham fix type
-export const getUserInfo = async (uid: string, params?: Record<string, string>): Promise<any | null> => {
-  // uid = '1264804';
-  const url = buildUrl(uid, params);
+export const getUserInfo = async (uid: string, filters: boolean[]): Promise<Record<string, any> | null> => {
+  const url = buildUrl(uid, filters);
   const [result, error] = await fetchData(url);
   if (error) {
     // raise up error message
@@ -15,6 +14,17 @@ export const getUserInfo = async (uid: string, params?: Record<string, string>):
   }
 };
 
-export const buildUrl = (uid: string, params?: Record<string, string>): string => `${apiRoutes.STK_OVERFLOW.PROFILE}/${uid}/questions?order=desc&sort=activity&site=stackoverflow`;
+export const buildUrl = (uid: string, filters: boolean[]): string => {
+  const activeFilters = filters
+    .map((activeFilter: boolean, index: number) => {
+      if (activeFilter) {
+        return `&sort=${FILTERS_BUTTON_QUERY_PARAM[index]}`;
+      }
+    })
+    .join('');
+  return `${apiRoutes.STK_OVERFLOW.PROFILE}/${uid}/questions?order=desc${activeFilters}&site=stackoverflow`;
+};
 
 export const getHtmlContent = (htmlEncocedContent: string): string => decode(htmlEncocedContent);
+
+export const getBooleanArray = (size: number): boolean[] => Array.from({ length: size }).map(_ => false);

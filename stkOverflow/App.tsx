@@ -1,13 +1,28 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { AppState, SafeAreaView } from 'react-native';
 import { RootScreen } from './src/components/root/Root';
+import { FILTERS_BUTTON_LABELS } from './src/config/const';
 import { Theme } from './src/models/stkOverflow.types';
+import { getBooleanArray } from './src/services/logic';
 
-export const ThemeContext = createContext({ theme: Theme.LIGHT, setTheme: ((_: string) => {}) as React.Dispatch<React.SetStateAction<Theme>> });
+// I used context instead of real state management for time saving, but it worses in term of performance...
+export const GlobalStateContext = createContext({
+  theme: Theme.LIGHT,
+  setTheme: (_: Theme) => {},
+  filters: getBooleanArray(FILTERS_BUTTON_LABELS.length),
+  setFilters: (_: boolean[]) => {},
+  userId: '',
+  setUserId: (_: string) => {},
+  posts: [] as Record<string, unknown>[],
+  setPosts: (_: []) => {},
+});
 
 const App = () => {
   const [theme, setTheme] = useState(Theme.LIGHT);
-  const themeData = { theme, setTheme };
+  const [filters, setFilters] = useState(getBooleanArray(FILTERS_BUTTON_LABELS.length));
+  const [userId, setUserId] = useState('');
+  const [posts, setPosts] = useState<Record<string, unknown>[]>([]);
+  const initContext = { theme, setTheme, filters, setFilters, userId, setUserId, posts, setPosts };
 
   useEffect(() => {
     const subscription = AppState.addEventListener('change', () => {});
@@ -18,9 +33,9 @@ const App = () => {
 
   return (
     <SafeAreaView>
-      <ThemeContext.Provider value={themeData}>
+      <GlobalStateContext.Provider value={initContext}>
         <RootScreen />
-      </ThemeContext.Provider>
+      </GlobalStateContext.Provider>
     </SafeAreaView>
   );
 };

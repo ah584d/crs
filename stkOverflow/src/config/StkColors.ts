@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeContext } from '../../App';
+import { GlobalStateContext } from '../../App';
 import { Theme } from '../models/stkOverflow.types';
 
 const light = {
@@ -154,11 +154,11 @@ const dark = {
   ...light,
   // I only implemented two colors for dark mode
   black: '#ffffff',
-  white: '#000000',
+  white: '#2c2b2b',
 };
 
 export const StkColors = () => {
-  const isDarkMode = React.useContext(ThemeContext)?.theme === Theme.DARK;
+  const isDarkMode = React.useContext(GlobalStateContext)?.theme === Theme.DARK;
 
   if (isDarkMode) {
     return dark;
