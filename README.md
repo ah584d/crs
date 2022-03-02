@@ -1,4 +1,4 @@
-<img src="readmePictures/react.png" align="right" />
+<img src="readmePictures/react.png" align="right" width="50" height="50" style="background-color:white;"/>
 
 ## CRS - stackoverflow feed app
 > A simple React-Native application to fetch stackoverflow user infos
