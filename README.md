@@ -31,9 +31,10 @@
 In order to test: type user id 1234567 (and change typing speed to test debouncing)
 
 ## Screenshots
-![crs](https://github.com/ah584d/crs/blob/master/pictures/screen1.jpg)
-![crs](https://github.com/ah584d/crs/blob/master/pictures/screen2.jpg)
-![crs](https://github.com/ah584d/crs/blob/master/pictures/screen2.jpg)
+![main screen](https://github.com/ah584d/crs/blob/master/readmePictures/screen1.jpg)
+![search user](https://github.com/ah584d/crs/blob/master/readmePictures/screen2.jpg)
+![dark mode](https://github.com/ah584d/crs/blob/master/readmePictures/screen3.jpg)
+![display post](https://github.com/ah584d/crs/blob/master/readmePictures/screen4.jpg)
 
 
 ## Backlog
