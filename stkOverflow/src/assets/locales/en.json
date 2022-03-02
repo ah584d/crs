@@ -9,7 +9,9 @@
     "date": "Date",
     "answers": "Answers",
     "views": "Views",
-	"footer_1": "Total of",
-	"footer_2": "questions found"
+    "footer_1": "Total of",
+    "footer_2": "questions found",
+    "score": "Score",
+    "noUser": "no user found for this id"
   }
 }

@@ -1,6 +1,6 @@
 import debounce from 'lodash/debounce';
 import React, { ReactElement, useEffect, useMemo, useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { DEBOUNCE_DELAY } from '../../config/const';
 import { StkColors } from '../../config/stkColors';
 import { getUserInfo } from '../../services/logic';
@@ -9,10 +9,11 @@ import { Footer } from '../footer/Footer';
 import { Header } from '../header/Header';
 import { PostsList } from '../postsList/PostsList';
 import { UserSummary } from '../userSummary/UserSummary';
+import en from '../../assets/locales/en.json';
 
 export const RootScreen = (): ReactElement => {
   const [loading, setLoading] = useState(false);
-  const [posts, setPosts] = useState<any>(); // avraham fix types
+  const [posts, setPosts] = useState<Record<string, unknown>[]>();
 
   // Stop the invocation of the debounced function after component unmounting
   useEffect(() => {
@@ -52,7 +53,11 @@ export const RootScreen = (): ReactElement => {
           <InputField onTextChanged={debouncedChangeHandler} editable={!loading} />
         </View>
         <View style={styles.listWrapper}>
-          {isListAvailable ? <UserSummary name={display_name} reputation={reputation} acceptRate={accept_rate} avatar={profile_image} /> : null}
+          {isListAvailable ? (
+            <UserSummary name={display_name} reputation={reputation} acceptRate={accept_rate} avatar={profile_image} />
+          ) : (
+            <Text style={[styles.noUserText, { color: StkColors().black }]}>{en.labels.noUser}</Text>
+          )}
           <PostsList posts={posts} />
         </View>
       </View>
@@ -70,7 +75,6 @@ const styles = StyleSheet.create({
     height: '100%',
     marginTop: 12,
     paddingHorizontal: 12,
-    borderWidth: 1,
     justifyContent: 'space-between',
   },
   top: {
@@ -94,5 +98,9 @@ const styles = StyleSheet.create({
   },
   footerWrapper: {
     paddingBottom: 32,
+  },
+  noUserText: {
+    fontSize: 18,
+    textAlign: 'center',
   },
 });

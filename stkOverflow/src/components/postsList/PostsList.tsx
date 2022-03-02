@@ -20,16 +20,18 @@ export const PostsList = ({ posts }: PostsListProps): ReactElement => {
     setVisible(true);
   };
 
+  const separator = (): ReactElement => <View style={[styles.separator, { borderBottomColor: StkColors().lightgray }]} />;
   return (
     <>
       <FlatList
         data={posts?.slice(0, 15)}
-        renderItem={(post: Record<string, any>) => <PostItem title={post?.item?.title} url={post?.item?.link} openModal={openModal} />}
+        renderItem={(post: Record<string, any>) => <PostItem title={post?.item?.title} score={post?.item?.score} url={post?.item?.link} openModal={openModal} />}
         keyExtractor={(item, index) => `${item?.accepted_answer_id}-${index}`}
-        ItemSeparatorComponent={() => <View style={[styles.separator, { borderBottomColor: StkColors().lightgray }]} />}
+        ItemSeparatorComponent={separator}
+        ListFooterComponent={separator}
       />
       <Modal visible={visible}>
-        <SafeAreaView style={styles.modalContent}>
+        <SafeAreaView style={[styles.modalContent, { backgroundColor: StkColors().white }]}>
           <View style={styles.closeWrapper}>
             <CloseButton onClose={() => setVisible(false)} />
           </View>

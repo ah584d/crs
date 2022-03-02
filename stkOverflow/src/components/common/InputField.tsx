@@ -29,12 +29,12 @@ export const InputField = ({ onTextChanged, editable }: InputFieldProps): ReactE
           value={text}
         />
         <TouchableOpacity
-          style={styles.closeButtonParent}
+          style={styles.resetButtonParent}
           onPress={() => {
             setText('');
             onTextChanged('');
           }}>
-          <Image style={styles.closeButton} source={require('../../assets/png/close.png')} />
+          <Image style={[styles.resetButton, { backgroundColor: StkColors().white }]} source={require('../../assets/png/close.png')} />
         </TouchableOpacity>
       </View>
       {!editable ? (
@@ -61,12 +61,12 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingLeft: 12,
   },
-  closeButtonParent: {
+  resetButtonParent: {
     justifyContent: 'center',
     alignItems: 'center',
     paddingRight: 12,
   },
-  closeButton: {
+  resetButton: {
     height: 20,
     width: 20,
   },

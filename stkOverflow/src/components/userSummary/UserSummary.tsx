@@ -17,8 +17,8 @@ export const UserSummary = ({ name, reputation, acceptRate, avatar }: UserSummar
         <Image style={[styles.avatar, { borderColor: StkColors().black }]} source={{ uri: avatar }} />
         <View style={styles.userDetails}>
           <Text style={[styles.text, { color: StkColors().black }]}>{name}</Text>
-          <Text style={[styles.text, { color: StkColors().black }]}>{reputation}</Text>
-          <Text style={[styles.text, { color: StkColors().black }]}>{acceptRate}</Text>
+          <Text style={[styles.text, { color: StkColors().black }]}>Reputation - {reputation}</Text>
+          {acceptRate && <Text style={[styles.text, { color: StkColors().black }]}>Accept Rate - {acceptRate}</Text>}
         </View>
       </View>
       <View style={styles.filter}>
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
   },
   userDetails: {
-    flex: 0.5,
+    flex: 0.6,
     borderWidth: 1,
     justifyContent: 'space-between',
     paddingLeft: 16,
