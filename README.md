@@ -37,7 +37,7 @@ In order to test: type user id 1234567 (and change typing speed to test debounci
 3. add state management (Redux, Mobix...)
 5. accessibility
 6. handle network errors
-7. e2e tests
+7. unit tests
 8. perfect pixel improvment
 
 ## Screenshots
