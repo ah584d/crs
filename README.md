@@ -14,7 +14,6 @@
 6. display smootly html encoded characters
 7. labels string in external json file (allow to adapt easily i18n)
 8. filtering result (server filtering)
-9. UT examples
  
 
 ## Installation
@@ -40,7 +39,6 @@ In order to test: type user id 1234567 (and change typing speed to test debounci
 6. handle network errors
 7. e2e tests
 8. perfect pixel improvment
-
 
 ## Screenshots
 
