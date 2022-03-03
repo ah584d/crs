@@ -37,9 +37,11 @@ In order to test: type user id 1234567 (and change typing speed to test debounci
 2. client side filter (faster)
 3. add state management (Redux, Mobix...)
 5. accessibility
-6. e2e tests
-7. stronger TS types
-8. perfect pixel improvment
+6. handle network errors
+7. e2e tests
+8. stronger TS types
+9. perfect pixel improvment
+
 
 ## Screenshots
 

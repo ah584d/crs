@@ -1,7 +1,6 @@
 import React, { ReactElement, useState } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import { GlobalStateContext } from '../../../App';
-import { Theme } from '../../models/stkOverflow.types';
+import { GlobalStateContext, Theme } from '../../models/stkOverflow.types';
 import { ToggleButton } from '../common/ToggleButton';
 import en from '../../assets/locales/en.json';
 import { StkColors } from '../../config/stkColors';

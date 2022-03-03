@@ -7,7 +7,8 @@ export const getUserInfo = async (uid: string, filters: boolean[]): Promise<Reco
   const url = buildUrl(uid, filters);
   const [result, error] = await fetchData(url);
   if (error) {
-    // raise up error message
+    console.log('Error occured while fetching data', error);
+    // raise up error message toast
     return null;
   } else {
     return result;

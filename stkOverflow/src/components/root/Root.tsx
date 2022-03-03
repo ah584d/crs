@@ -10,7 +10,7 @@ import { Header } from '../header/Header';
 import { PostsList } from '../postsList/PostsList';
 import { UserSummary } from '../userSummary/UserSummary';
 import en from '../../assets/locales/en.json';
-import { GlobalStateContext } from '../../../App';
+import { GlobalStateContext } from '../../models/stkOverflow.types';
 
 export const RootScreen = (): ReactElement => {
   const [loading, setLoading] = useState(false);

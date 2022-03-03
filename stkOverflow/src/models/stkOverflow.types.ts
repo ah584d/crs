@@ -1,11 +1,33 @@
-import React from 'react';
+import { createContext } from 'react';
+import { FILTERS_BUTTON_LABELS } from '../config/const';
+import { getBooleanArray } from '../services/logic';
 
 export enum Theme {
   DARK = 'dark',
   LIGHT = 'light',
 }
+
 export type NetworkResponse = [Record<string, any> | null, unknown | null];
-export type AdaptTheme = React.Dispatch<React.SetStateAction<Theme>>;
-export type AdaptFilters = React.Dispatch<React.SetStateAction<boolean[]>>;
-export type AdaptQuery = (_: any) => void; //React.Dispatch<React.SetStateAction<RunQuery | undefined>>;
-export type RunQuery = (inputFieldValue: string, refresh?: boolean) => Promise<void>;
+
+export interface GlobalContextType {
+  theme: Theme;
+  setTheme: (_: Theme) => void;
+  filters: boolean[];
+  setFilters: (_: boolean[]) => void;
+  userId: string;
+  setUserId: (_: string) => void;
+  posts: Record<string, unknown>[];
+  setPosts: (_: []) => void;
+}
+
+// I used context instead of real state management for time saving, but it worses in term of performance...
+export const GlobalStateContext = createContext<GlobalContextType>({
+  theme: Theme.LIGHT,
+  setTheme: (_: Theme) => {},
+  filters: getBooleanArray(FILTERS_BUTTON_LABELS.length),
+  setFilters: (_: boolean[]) => {},
+  userId: '',
+  setUserId: (_: string) => {},
+  posts: [] as Record<string, unknown>[],
+  setPosts: (_: []) => {},
+});

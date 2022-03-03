@@ -4,8 +4,8 @@ import { StkColors } from '../../config/stkColors';
 import en from '../../assets/locales/en.json';
 import { FILTERS_BUTTON_LABELS } from '../../config/const';
 import { Filter } from './Filter';
-import { GlobalStateContext } from '../../../App';
 import { getUserInfo } from '../../services/logic';
+import { GlobalStateContext } from '../../models/stkOverflow.types';
 
 export const Filters = (): ReactElement => {
   const { setFilters, filters, userId, setPosts } = React.useContext(GlobalStateContext);

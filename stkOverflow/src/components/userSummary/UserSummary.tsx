@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import { StkColors } from '../../config/stkColors';
 import en from '../../assets/locales/en.json';
-import { Filters } from './FiIters';
+import { Filters } from './Filters';
 
 export interface UserSummaryProps {
   avatar: string;

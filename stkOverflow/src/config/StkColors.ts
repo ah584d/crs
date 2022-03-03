@@ -1,6 +1,5 @@
 import React from 'react';
-import { GlobalStateContext } from '../../App';
-import { Theme } from '../models/stkOverflow.types';
+import { GlobalStateContext, Theme } from '../models/stkOverflow.types';
 
 const light = {
   aliceblue: '#f0f8ff',
