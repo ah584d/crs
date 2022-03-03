@@ -3,12 +3,13 @@ import { StyleSheet, FlatList, View, SafeAreaView, Modal } from 'react-native';
 import WebView from 'react-native-webview';
 import { MAX_RESULT_IN_LIST } from '../../config/const';
 import { StkColors } from '../../config/stkColors';
+import { PostDto } from '../../models/dto/stkOverflow.dto';
 import { CloseButton } from '../common/CloseButton';
 import { Spinner } from '../common/Spinner';
 import { PostItem } from '../postItem/PostItem';
 
 export interface PostsListProps {
-  posts: Record<string, any>[] | undefined;
+  posts: PostDto[] | undefined;
 }
 
 export const PostsList = ({ posts }: PostsListProps): ReactElement => {
@@ -25,8 +26,8 @@ export const PostsList = ({ posts }: PostsListProps): ReactElement => {
   return (
     <>
       <FlatList
-        data={posts?.slice(0, MAX_RESULT_IN_LIST)}
-        renderItem={(post: Record<string, any>) => <PostItem title={post?.item?.title} score={post?.item?.score} url={post?.item?.link} openModal={openModal} />}
+        data={posts}
+        renderItem={({ item }) => <PostItem title={item?.title} score={item?.score} url={item?.link} openModal={openModal} />}
         keyExtractor={(item, index) => `${item?.last_activity_date}-${index}`}
         ItemSeparatorComponent={separator}
         ListFooterComponent={posts && posts.length > 0 ? separator : null}
@@ -36,7 +37,13 @@ export const PostsList = ({ posts }: PostsListProps): ReactElement => {
           <View style={styles.closeWrapper}>
             <CloseButton onClose={() => setVisible(false)} />
           </View>
-          <WebView startInLoadingState={true} ref={webViewRef} source={{ uri: currentUrl ?? 'https://google.com' }} renderLoading={() => <Spinner />} />
+          <WebView
+            onShouldStartLoadWithRequest={() => true}
+            startInLoadingState={true}
+            ref={webViewRef}
+            source={{ uri: currentUrl ?? 'https://google.com' }}
+            renderLoading={() => <Spinner />}
+          />
         </SafeAreaView>
       </Modal>
     </>

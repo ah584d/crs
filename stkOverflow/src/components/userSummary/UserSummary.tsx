@@ -7,7 +7,7 @@ import { Filters } from './Filters';
 export interface UserSummaryProps {
   avatar: string;
   name: string;
-  reputation: string;
+  reputation: number;
   acceptRate: number;
 }
 

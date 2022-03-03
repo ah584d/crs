@@ -1,11 +1,12 @@
 import { decode } from 'html-entities';
 import { apiRoutes } from '../config/apiRoutes';
 import { FILTERS_BUTTON_QUERY_PARAM } from '../config/const';
+import { PostsDto } from '../models/dto/stkOverflow.dto';
 import { fetchData } from './network';
 
-export const getUserInfo = async (uid: string, filters: boolean[]): Promise<Record<string, any> | null> => {
+export const getUserInfo = async (uid: string, filters: boolean[]): Promise<PostsDto | null> => {
   const url = buildUrl(uid, filters);
-  const [result, error] = await fetchData(url);
+  const [result, error] = await fetchData<PostsDto>(url);
   if (error) {
     console.log('Error occured while fetching data', error);
     // raise up error message toast

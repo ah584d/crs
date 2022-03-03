@@ -39,8 +39,7 @@ In order to test: type user id 1234567 (and change typing speed to test debounci
 5. accessibility
 6. handle network errors
 7. e2e tests
-8. stronger TS types
-9. perfect pixel improvment
+8. perfect pixel improvment
 
 
 ## Screenshots

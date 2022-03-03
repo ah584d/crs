@@ -18,7 +18,7 @@ export const Filters = (): ReactElement => {
 
   const refreshUserData = async (): Promise<void> => {
     const userInfos = await getUserInfo(userId, filters);
-    setPosts(userInfos?.items);
+    userInfos && setPosts(userInfos.items);
   };
 
   return (

@@ -11,11 +11,12 @@ import { PostsList } from '../postsList/PostsList';
 import { UserSummary } from '../userSummary/UserSummary';
 import en from '../../assets/locales/en.json';
 import { GlobalStateContext } from '../../models/stkOverflow.types';
+import { OwnerDto } from '../../models/dto/stkOverflow.dto';
 
 export const RootScreen = (): ReactElement => {
   const [loading, setLoading] = useState(false);
   const { filters, userId, setUserId, posts, setPosts } = React.useContext(GlobalStateContext);
-  const { owner: { display_name, reputation, profile_image, accept_rate } = {} as any } = posts?.[0] ?? {};
+  const { owner: { display_name, reputation, profile_image, accept_rate } = {} as OwnerDto } = posts?.[0] ?? {};
 
   // Stop the invocation of the debounced function after component unmounting
   useEffect(() => {
@@ -35,7 +36,7 @@ export const RootScreen = (): ReactElement => {
 
     setLoading(true);
     const userInfos = await getUserInfo(inputFieldValue, filters);
-    setPosts(userInfos?.items);
+    userInfos && setPosts(userInfos.items);
     setLoading(false);
   };
 
