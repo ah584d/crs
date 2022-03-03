@@ -3,11 +3,6 @@
 ## CRS - stackoverflow feed app
 > A simple React-Native application to fetch stackoverflow user infos
 
-## Screenshots
-<img src="readmePictures/screen4.jpg" align="right" width="200" height="450" style="background-color:white;"/>
-<img src="readmePictures/screen3.jpg" align="right" width="200" height="450" style="background-color:white;"/>
-<img src="readmePictures/screen2.jpg" align="right" width="200" height="450" style="background-color:white;"/>
-<img src="readmePictures/screen1.jpg" align="right" width="200" height="450" style="background-color:white;"/>
 
 ## Features
 
@@ -35,6 +30,7 @@
 
 In order to test: type user id 1234567 (and change typing speed to test debouncing)
 
+
 ## Backlog
 
 1. android support
@@ -45,8 +41,10 @@ In order to test: type user id 1234567 (and change typing speed to test debounci
 7. stronger TS types
 8. perfect pixel improvment
 
+## Screenshots
 
-
-## License
-
-MIT © [Avraham Hamu]()
+<img src="readmePictures/screen4.jpg" align="right" width="250" height="450" style="background-color:white;"/>
+<img src="readmePictures/screen3.jpg" align="right" width="250" height="450" style="background-color:white;"/>
+<img src="readmePictures/screen2.jpg" align="right" width="250" height="450" style="background-color:white;"/>
+<img src="readmePictures/screen1.jpg" align="right" width="250" height="450" style="background-color:white;"/>
+  
