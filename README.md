@@ -1,6 +1,6 @@
 <img src="readmePictures/react.png" align="right" width="100" height="100" style="background-color:white;"/>
 
-## CRS - stackoverflow feed app
+## CRS - HOMEWORK - stackoverflow feed app
 > A simple React-Native application to fetch stackoverflow user infos
 
 
